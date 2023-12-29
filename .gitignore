@@ -1,0 +1,7 @@
+/local.yaml
+/local-test.yaml
+**/__pycache__/
+.vscode/
+**/*.egg-info/
+test.ipynb
+checkpoint/

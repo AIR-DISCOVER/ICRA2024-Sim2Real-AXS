@@ -1,0 +1,15 @@
+[submodule "thirdparty/orocos_kinematics_dynamics"]
+	path = thirdparty/orocos_kinematics_dynamics
+	url = https://github.com/orocos/orocos_kinematics_dynamics.git
+[submodule "thirdparty/segment-anything-fast"]
+	path = thirdparty/segment-anything-fast
+	url = https://github.com/pytorch-labs/segment-anything-fast.git
+[submodule "thirdparty/graspnet"]
+	path = thirdparty/graspnet
+	url = https://github.com/TB5z035/graspnet-airbot.git
+[submodule "thirdparty/yolo-v7"]
+	path = thirdparty/yolo-v7
+	url = https://github.com/TB5z035/yolov7.git
+[submodule "thirdparty/graspnetAPI-airbot"]
+	path = thirdparty/graspnetAPI-airbot
+	url = https://github.com/TB5z035/graspnetAPI-airbot.git
