@@ -52,7 +52,7 @@ DOCKER_DISPLAY=$DISPLAY
 
 sudo docker rm -f omnigibson_env
 
-sudo docker run -id --name omnigibson_env --network host\
+sudo docker run -it --name omnigibson_env --network host\
     --gpus all \
     --privileged \
     -e DISPLAY=${DOCKER_DISPLAY} \
@@ -70,4 +70,4 @@ sudo docker run -id --name omnigibson_env --network host\
     -v $DATA_PATH/isaac-sim/data:/root/.local/share/ov/data:rw \
     -v $DATA_PATH/isaac-sim/documents:/root/Documents:rw \
     -v $HOME/Desktop/shared:/shared \
-    jieyitsinghuawx/icra2024-sim2real-axs-env:first_image
+    jieyitsinghuawx/icra2024-sim2real-axs-env:update_model
