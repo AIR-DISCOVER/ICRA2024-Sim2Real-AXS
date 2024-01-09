@@ -56,7 +56,7 @@ This part serves as the communication pivot in ROS systems.
 
 In Phase 1, the task is executed in a simulated scenario. Therefore, we built a real-world test scenario with isaac-sim.
 
-The interface between the server and the client is defined by the ROS topic, which can be found here[ros topic](./Platform_introduction.md).
+The interface between the server and the client is defined by the ROS topic, which can be found here [ros topic](./Platform_introduction.md).
 
 ### Client
 
