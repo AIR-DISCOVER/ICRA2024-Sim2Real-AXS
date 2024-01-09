@@ -1,3 +1,3 @@
 xhost +
-docker start baseline
-docker exec -it baseline /bin/bash
+sudo docker start baseline
+sudo docker exec -it baseline /bin/bash
