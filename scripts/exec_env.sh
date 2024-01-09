@@ -1,3 +1,3 @@
 xhost +
-docker start omnigibson_env
-docker exec -it omnigibson_env /bin/bash
+sudo docker start omnigibson_env
+sudo docker exec -it omnigibson_env /bin/bash
