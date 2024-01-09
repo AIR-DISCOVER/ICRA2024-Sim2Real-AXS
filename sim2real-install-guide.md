@@ -95,7 +95,7 @@ sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
 Reference link for docker installation: [docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 
-## 1.4 docker login
+## 1.4 Docker login
 
 Register the dockerhub account:
 
@@ -116,139 +116,166 @@ sudo docker login
 </div>
 
 
-## 1.5 Docker Install
+## 1.5 Docker Server operation
 
-### 1. Download the files required to configure the Docker image from the following address:
+### 1.5.1 Create container
 
-```angular2html
-link：https://pan.baidu.com/s/1aPxHzKSQPSr-oyiPOXT95w 
-Extract code：8b32
-```
-### 2. Requirements for the Linux environment：
-Make sure that Docker is installed on the Linux system and that the GPU can be run in Docker. 
-* You can install Docker in the following ways：
-```angular2html
-Open the downloaded folder omnigibson_docker and locate the docker_install.sh file。
-Open Terminal or Command Prompt and go to the directory containing the image file.
-Run command:sudo chmod 755 ./docker_install.sh
-Run command：./docker_install.sh
-```
-* The following ways can be used to make it possible to run GPUs in Docker:
-```angular2html
-Follow the tutorial at the URL below to install the NVIDIA Container Toolkit：
-https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
-```
-### 3. Load the Docker image to the machine：
-1. Locate the downloaded Docker image.
-2. Open Terminal or Command Prompt and go to the directory containing the image file.
-3. Run the import command. Run the following command to import the image into the Docker environment:
-```angular2html
-docker load -i v1.tar
-```
-4. After this command is executed, Docker will import the image in the v1 .tar file into the local Docker environment. You can run the following command to view the list of imported images and confirm that the v1 images have been imported:
-```angular2html
-docker images
-```
+Use scripts to create docker container
 
-### 4. Mount the Data folder
-  1. Locate the downloaded run_omni.sh file
-  2. Open and make changes to what's highlighted in red below, then save and exit
-  <div align="center">
-    <img src="./assets/img.png" width="80%">
-  </div>
-
-```angular2html
-//modify -v /home/sim_1/OmniGibson-Airbot/omnigibson/data:/data 
-//Modify the directory /home/sim_1/OmniGibson-Airbot/omnigibson/data in the previous section to the directory of the data file in the real machine
-```
-```
-#Open a terminal or command prompt and go to the directory containing the run_omni.sh and run:
-sudo chmod 755 ./run_omni.sh
-./run_omni.sh
-```
-### 5. Entering a Docker Image (You can use the following methods)
-  1. Open the downloaded folder omnigibson_docker and find the exec.sh file.
-  2. Open Terminal or Command Prompt and go to the directory containing the image file.
-  3. Run command:
-```angular2html
-sudo chmod 755 ./exec.sh
-./exec.sh
-```
-6. Check whether the Data folder is successfully attached
-
-
-
-## Docker Server operation
-
-### 2.1 To start the docker
-
-Run this line again after reset
+After clone this repo, scripts need to have execute right. Run code below to add rights: 
 
 ```
-sudo docker start sim2real_server 
-
-cd ./ICRA-RM-Sim2Real/docker_server
-
-./exec_server.sh
-```
-Enter the docker
-
-### 2.2 Start the OmniGibson sim
-
-Start a new terminal.
-
-```
-cd ./ICRA-RM-Sim2Real/docker_server
-
-./exec_server.sh
-
-roscore
-
-```
-Create a new terminal
-
-```
-cd ~/OmniGibson_Airbot/
-
-python -m omnigibson.AXS_env --ik
-
+cd ICRA2024-Sim2Real-AXS
+sudo chmod a+x scripts/*
 ```
 
-There should be a window created and scene showed in the window, use `W`, `A`, `S`, `D` to control agent move.
-
-![1](./assets/20231224-183530.jpg)
-
-### 2.3 Start the MoveIt!
-
-Run the following command to start the MoveIt! service:
+To create container for OmniGibson environment, use run_omni.sh
 
 ```
-roslaunch airbot_play_launch airbot_play_moveit.launch use_rviz:=true target_moveit_config:=airbot_play_v2_1_config use_basic:=true
+./scripts/run_omni.sh
 ```
 
-**client**
- 
- 
-Start TF release
-Create two new terminals
+To create container for baseline, use run_baseline.sh
 
 ```
-# source moveit ik workspace
-roslaunch airbot_play_launch robot_state_publisher.launch robot_description_path:=gibson的urdf路径
-roslaunch airbot_play_launch static_transform_publisher.launch
-
-```
-Start hdl_localization
-
-Create two new terminals
-```
-source ~/Workspace/hdl_ws/devel/setup.bash
-roslaunch hdl_localization hdl_localization.launch
+./scripts/run_baseline.sh
 ```
 
-Start baseline
+If the image have not found locally, it will pull from docker hub automatically. The image size for OmniGibson is about 60 Gb, for baseline is about 30 Gb. It will take some time to download. 
+
+### 1.5.2 Execute container
+
+The container can also be started and execute by using scripte. 
+
+To execute container for OmniGibson environment, use exec_env.sh
 ```
-conda activate baseline
-cd ~/Workspace/AXS_baseline/ICRA2024-Sim2Real-AXS
-python src/airbot/example/segmentor.py
+./scripts/exec_env.sh
 ```
+
+To execute container for baseline, use exec_baseline.sh
+```
+./scripts/exec_baseline.sh
+```
+
+### <a name="gibson"></a>1.5.3 OmniGibson environment
+
+This docker container is the environment for the challenge. It is not allowed to be change. Any change in this container will not be accepted in submission. 
+
+Caution: Every step below need to run in OmniGibson environment container. Make sure commands run in the container. 
+
+1. Start the OmniGibson simulator
+
+    Start a new terminal and execute the OmniGibson environment container. The conda environment should be `omnigibson`. If not, run:
+    ```
+    conda activate omnigibson
+    ```
+    After make sure the conda environment, you can start the simulator by running command below:
+
+    ```
+    roscore &
+    python -m omnigibson.AXS_env --ik
+    ```
+
+2. Start ros TF publish
+
+    Start a new terminal and execute the OmniGibson environment container. 
+    
+    To start TF publish, run: 
+    ```
+    roslaunch airbot_play_launch robot_state_publisher.launch robot_description_path:=/root/OmniGibson-Airbot/omnigibson/data/assets/models/airbot_play_with_rm2/airbot_with_texture/urdf_obj/AIRBOT_V3_v2-3.urdf &
+    roslaunch airbot_play_launch static_transform_publisher.launch &
+    ```
+
+    These two program will run at the backend. If you do not want it at backend, please delete `&` at the end of command. If you do this, you will need two terminals which inside container. 
+
+3. Start IK service
+
+    If you run last step in backend, then you can continue work with the same terminal. Otherwise, start a new terminal and execute the OmniGibson environment container. 
+
+    Run command below to start IK service:
+    ```
+    roslaunch airbot_play_launch airbot_play_moveit.launch use_rviz:=true target_moveit_config:=airbot_play_v2_1_config use_basic:=true
+    ```
+
+4. (Optional) Start ros keyboard control
+
+    Start a new terminal and execute the OmniGibson environment container.
+
+    Run command below to start keyboard control:
+    ```
+    python /root/OmniGibson-Airbot/teleop_twist_keyboard_AXS.py
+    ```
+
+    Usage: 
+
+    Movement:
+
+    `i` / `,`: Move forward / backward
+
+    `j` / `l`: Rotate left / right in place
+
+    `u` / `o`: Move in arc (front-left / front-right)
+
+    `m` / `.`: Move in arc (back-left / back-right)
+
+    `k`: Stop
+
+    `q` / `z`: Increase / Decrease both linear and angular speed by 1.1 times
+
+    `w` / `x`: Increase / Decrease linear speed by 1.1 times
+
+    `e` / `c`: Increase / Decrease angular speed by 1.1 times
+
+    Arm (joint control):
+
+    `1` / `2`: Rotate arm joint 1
+
+    `3` / `4`: Rotate arm joint 2
+
+    `5` / `6`: Rotate arm joint 3
+
+    `7` / `8`: Rotate arm joint 4
+
+    `9` / `0`: Rotate arm joint 5
+
+    `-` / `=`: Rotate arm joint 6
+
+    Gripper:
+
+    `a`: Open / Close gripper
+
+### 1.5.4 Baseline
+
+This docker contains the baseline for this challenge. The solution also suggest to complete inside this container. The submission will accept a docker image which contains solutions. 
+
+To start baseline, please finish all steps in [1.5.3 OmniGibson environment](#gibson) and then follow the step below. 
+
+1. Start hdl localization
+
+    Start a new terminal and execute the baseline container. Run 
+    ```
+    roslaunch hdl_localization hdl_localization.launch
+    ```
+    and check the localization is same as current pose in simulator. If not, use `2D Pose Estimate` to correct it. 
+
+2. Start base control
+
+    Start a new terminal and execute the baseline container. The conda environment should be `baseline`. If not, run:
+    ```
+    conda activate baseline
+    ```
+    After make sure the conda environment, you can start the base control by running command below:
+    ```
+    python /root/robot_tools/examples/ros_base_control.py
+    ```
+  
+3. Start main baseline service
+
+    Start a new terminal and execute the baseline container. The conda environment should be `baseline`. If not, run:
+    ```
+    conda activate baseline
+    ```
+    After make sure the conda environment, you can start the base control by running command below:
+    ```
+    python /root/Workspace/AXS_baseline/ICRA2024-Sim2Real-AXS/src/airbot/example/segmentor.py
+    ```
