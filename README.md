@@ -60,10 +60,10 @@ The interface between the server and the client is defined by the ROS topic, whi
 
 ### Client
 
-In this repo, we provide a baseline method for this task. A functional image can be obtained by building the image or pulling .jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.1
+In this repo, we provide a baseline method for this task. A functional image can be obtained by building the image or pulling .jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.2
 
 
-The baseline image (and potentially the images you built) is based on the base image . Basic functional units (e.g. keyboard control) are included in this base image. Please refer to this repo for further information on the base image .jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.1
+The baseline image (and potentially the images you built) is based on the base image . Basic functional units (e.g. keyboard control) are included in this base image. Please refer to this repo for further information on the base image .jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.2
 
 
 ## Related link
