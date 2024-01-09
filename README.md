@@ -76,7 +76,3 @@ The baseline image (and potentially the images you built) is based on the base i
 
 ### 1.2 Hardware and topic definition
 * [Platform introduction](./Platform_introduction.md)
-
-# ICRA2024-Sim2Real-AXS
-# ICRA2024-Sim2Real-AXS
-# ICRA2024-Sim2Real-AXS
