@@ -143,7 +143,7 @@ To create container for baseline, use run_baseline.sh
 
 If the image have not found locally, it will pull from docker hub automatically. The image size for OmniGibson is about 60 Gb, for baseline is about 30 Gb. It will take some time to download. 
 
-Please check the image tag in the scripts. Current docker images are jieyitsinghuawx/icra2024-sim2real-axs-env:v0.0.2 and jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.2. To get newest tag, please follow the challenge website. 
+Please check the image tag in the scripts. Current docker images are jieyitsinghuawx/icra2024-sim2real-axs-env:v0.0.3 and jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.3. To get newest tag, please follow the challenge website. 
 
 ### 1.5.2 Execute container
 
