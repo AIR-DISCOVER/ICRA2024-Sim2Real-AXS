@@ -8,5 +8,5 @@ sudo docker run -it --name baseline --network=host \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -e DISPLAY=$DISPLAY \
     -v $HOME/Desktop/shared:/shared \
-    jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.2 \
+    jieyitsinghuawx/icra2024-sim2real-axs-baseline:v0.0.3 \
     /bin/bash
