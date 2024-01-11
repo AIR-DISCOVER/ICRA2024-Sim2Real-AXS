@@ -277,7 +277,7 @@ To start baseline, please finish all steps in [1.5.3 OmniGibson environment](#gi
     ```
     conda activate baseline
     ```
-    After make sure the conda environment, you can start the base control by running command below:
+    After make sure the conda environment, you can start the basline program by running command below:
     ```
     python /root/Workspace/AXS_baseline/ICRA2024-Sim2Real-AXS/src/airbot/example/AXS_baseline.py
     ```
