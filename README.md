@@ -73,3 +73,7 @@ The baseline image (and potentially the images you built) is based on the base i
 
 ### 1.2 Hardware and topic definition
 * [Platform introduction](./Platform_introduction.md)
+  
+### 1.3 Rules
+* [中文](./Rule2024AgileSim2RealChallenge_cn.pdf)
+* [English](./Rule2024AgileSim2RealChallenge_en.pdf)
