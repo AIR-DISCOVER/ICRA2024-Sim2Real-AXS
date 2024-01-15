@@ -70,5 +70,5 @@ sudo docker run -it --name omnigibson_env --network host\
     -v $DATA_PATH/isaac-sim/data:/root/.local/share/ov/data:rw \
     -v $DATA_PATH/isaac-sim/documents:/root/Documents:rw \
     -v $HOME/Desktop/shared:/shared \
-    jieyitsinghuawx/icra2024-sim2real-axs-env:v0.0.3 \
+    jieyitsinghuawx/icra2024-sim2real-axs-env:v1.0.0 \
     /bin/bash
