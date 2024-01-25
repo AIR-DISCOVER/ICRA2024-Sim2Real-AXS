@@ -145,6 +145,8 @@ If the image have not found locally, it will pull from docker hub automatically.
 
 **Please check the image tag in the scripts.** Current docker images are jieyitsinghuawx/icra2024-sim2real-axs-env:v1.0.1 and jieyitsinghuawx/icra2024-sim2real-axs-baseline:v1.0.0. To get newest tag, please follow the challenge website. 
 
+If cannot pull docker by using `docker pull` command or scrtpts, please download the image from Baidu Netdisk, the link is https://pan.baidu.com/s/1_4TQwKusE_5zB97GabJd6A?pwd=zbs1. After download the tar files match current image version, please run `create_image_env.sh` and `create_image_baseline.sh` in the scripts folder. **Causion:** Please check the file name and file path in the sctipts. 
+
 ### 1.5.2 Execute container
 
 The container can also be started and execute by using scripte. 
