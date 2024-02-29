@@ -283,3 +283,48 @@ To start baseline, please finish all steps in [1.5.3 OmniGibson environment](#gi
     ```
     python /root/Workspace/AXS_baseline/ICRA2024-Sim2Real-AXS/src/airbot/example/AXS_baseline.py
     ```
+    
+### 1.5.5 Use Visual Studio Code to debug
+
+Install the extension for remote developing of the docker container (ms-vscode-remote.remote-containers):
+
+![demo-vscode-extension](assets/container-vscode-extension.png)
+
+Click the remote development button in the left-bottom corner and then select "Attach to Running Container":
+
+![demo-vscode-dev-container](assets/container-extension-select.png)
+
+Then choose the running client container (i.e., `/client`) and then open the folder `/opt/ep_ws/src`. Now you should be able to make changes directly to the files inside the docker.
+
+Note that any changes made in this way **DOES NOT** persist. Once the container is stopped and removed, changes will be lost. It is suggested to use the shell for debugging only and use `docker build` (see [build the container](#build-the-container)) for persistent changes.
+
+
+### 1.5.6 Submit the image
+
+Submitting images requires registering for the ICRA2024-Sim2Real-RM challenges.
+
+Players create a personal [docker hub](https://hub.docker.com/) account,create repository in Repositories, and save your Repository Name.
+
+If players already have an account,they can directly enter their account password to log in: 
+
+```
+docker login
+```
+
+After logging in, use the following command to view the image ID that needs to be submitted：
+
+```
+docker images
+```
+
+Then change the name of the image that needs to be submitted：
+
+```
+docker tag {image_id} {username}/{repository_name}:{image_version}
+```
+
+Submit to dockerhub:
+
+```
+docker push {username}/{repository_name}:{image_version}
+```
