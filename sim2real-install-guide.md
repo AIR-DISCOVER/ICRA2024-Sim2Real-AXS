@@ -85,7 +85,7 @@ sudo apt-get install -y nvidia-docker2
 sudo systemctl restart docker
 
 # test
-sudo docker run --rm --gpus all nvidia/cuda:11.0-base nvidia-smi
+sudo docker run --rm --gpus all nvidia/cuda:11.0.3-base-ubuntu20.04 nvidia-smi
 ```
 <div align="center">
   <img src="./assets/nvidia_docker.png" width="80%">
